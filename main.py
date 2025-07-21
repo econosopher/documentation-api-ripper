@@ -1,44 +1,32 @@
 #!/usr/bin/env python3
 """
-API Documentation Ripper - Main Entry Point
+API Documentation Ripper - Convert API Specs to Markdown
 """
 import sys
-from rich.console import Console
-from rich.panel import Panel
-
-console = Console()
+from pathlib import Path
 
 def main():
-    """Display available tools and usage"""
-    console.print(Panel.fit(
-        "[bold cyan]API Documentation Ripper[/bold cyan]\n"
-        "Extract and parse API documentation from various formats",
-        border_style="cyan"
-    ))
-    
-    console.print("\n[bold yellow]Available Tools:[/bold yellow]\n")
-    
-    tools = [
-        ("manage_profiles", "Manage persistent Chrome profiles to avoid repeated logins"),
-        ("search_highlight", "Simple text search and highlighting in API docs"),
-        ("search_persistent", "Search with persistent session (stays logged in)"),
-        ("detect_api_format", "Detect API format (Swagger, Redoc, etc.) and extract endpoints"),
-        ("extract_api_docs", "Interactive API documentation extraction tool")
-    ]
-    
-    for tool, description in tools:
-        console.print(f"  [cyan]./bin/{tool}.py[/cyan]")
-        console.print(f"    {description}\n")
-    
-    console.print("[bold yellow]Quick Start:[/bold yellow]")
-    console.print("1. First, create a persistent profile to avoid repeated logins:")
-    console.print("   [cyan]python bin/manage_profiles.py[/cyan]\n")
-    
-    console.print("2. Then use any of the search tools:")
-    console.print("   [cyan]python bin/search_persistent.py[/cyan]")
-    console.print("   [cyan]python bin/detect_api_format.py[/cyan]\n")
-    
-    console.print("[dim]For more information, see README.md[/dim]")
+    """Display usage information"""
+    print("API Documentation Ripper")
+    print("========================")
+    print("\nConvert OpenAPI/Swagger specifications to well-organized Markdown documentation.")
+    print("\nUsage:")
+    print("  python openapi_to_markdown.py <spec-file> [options]")
+    print("\nExamples:")
+    print("  # Convert YAML spec to markdown (output to console)")
+    print("  python openapi_to_markdown.py api-spec.yaml")
+    print("\n  # Convert JSON spec to markdown file")
+    print("  python openapi_to_markdown.py api-spec.json -o api-docs.md")
+    print("\n  # Convert with custom title")
+    print("  python openapi_to_markdown.py spec.yaml --title 'My API v2.0' -o docs.md")
+    print("\nOrganized workflow:")
+    print("  1. Save YAML/JSON files to api_specs/{platform}/")
+    print("  2. Run: python3 batch_convert.py")
+    print("  3. Find docs in api_docs/{platform}/")
+    print("\nCurrent platforms:")
+    print("  - api_specs/fortnite/")
+    print("  - api_specs/sensortower/")
+    print("\nFor more details, see README.md")
 
 if __name__ == "__main__":
     main()

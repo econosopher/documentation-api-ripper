@@ -1,0 +1,4 @@
+// Bookmarklet version - minified for easy bookmark bar usage
+// To use: Create a new bookmark and set this as the URL (include the javascript: prefix)
+
+javascript:(async()=>{console.log('🔍 Extracting Swagger spec...');if(window.ui?.specSelectors?.specJson){try{const s=window.ui.specSelectors.specJson();if(s){console.log('✅ Spec found:\n',JSON.stringify(s,null,2));return}}catch(e){}}const scripts=[...document.querySelectorAll('script')];for(const sc of scripts){const c=sc.textContent||'';const m=c.match(/url:\s*["']([^"']*\.(yaml|yml|json))["']/i);if(m?.[1]){try{const r=await fetch(new URL(m[1],location.href));const t=await r.text();console.log('✅ Spec found:\n',t);return}catch(e){}}}const paths=['./openapi.yaml','./openapi.json','./swagger.json'];for(const p of paths){try{const r=await fetch(new URL(p,location.href));if(r.ok){console.log('✅ Spec found:\n',await r.text());return}}catch(e){}}console.log('❌ No spec found. Check Network tab.')})();
